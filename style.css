@@ -1,0 +1,50 @@
+body{
+    background-color: white;
+}
+
+.quiz{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(7, 133, 133);
+    width: 30%;
+    height: 450px;
+    margin-top: 150px;
+    margin-bottom: 100px;
+    border-radius: 15px;
+    padding: 10px 25px;
+}
+
+.quiz h2{
+    text-align: center;
+    color: white;
+}
+
+.quiz p{
+    color: white;
+    font-size: 14pt;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.quiz ul li{
+ list-style-type: none;
+ margin-bottom: 10px;
+ font-size: 12pt;
+ color: white;
+ font-family: 'Times New Roman', Times, serif;
+}
+
+.quiz #submitBTN, .quiz #retake{   
+    display: flex;
+    padding: 15px 10px;
+    text-align: center;
+    margin-top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 55px;
+    width: 80px;
+    font-size: 14pt;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Times New Roman', Times, serif;
+}
