@@ -1,24 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>History Quiz</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Quiz</title>
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>History Quiz</h1>
-    <div id="question-container">
-      <p id="question-text"></p>
-      <ul id="answer-buttons" class="answer-list"></ul>
+    <div class="quiz">
+        <h2>Quiz</h2>
+        <p id="question"></p>
+        <ul>
+            <li>
+                <input id="a1" name="answer" type="radio" value="">
+                <label for="a1" id="label1"></label>
+            </li>
+
+            <li>
+                <input id="a2" name="answer" type="radio" value="">
+                <label for="a2" id="label2"></label>
+            </li>
+
+            <li>
+                <input id="a3" name="answer" type="radio" value="">
+                <label for="a3" id="label3"></label>
+            </li>
+
+            <li>
+                <input id="a4" name="answer" type="radio" value="">
+                <label for="a4" id="label4"></label>
+            </li>
+        </ul>
+
+        <button type="submit" id="submitBTN">Submit</button>
+        <button type="button" id="retake" style="display: none;">Retake</button>
     </div>
-    <button id="next-btn">Next</button>
-    <div id="score-container" class="hide">
-      <p id="score-text"></p>
-      <button onclick="startQuiz()">Restart Quiz</button>
-    </div>
-  </div>
-  <script src="script.js" charset="utf-8"
-  ></script>
+    <script src="index.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
