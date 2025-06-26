@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .question-box {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+    }
+    .choices label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 30px;
+      font-weight: bold;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #timer {
+      font-size: 1.2em;
+      color: red;
+      margin-bottom: 20px;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    .question-image {
+      width: 100%;
+      max-width: 400px;
+      display: block;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>History Quiz</h1>
+  <div id="timer">Time Left: <span id="time">300</span> seconds</div>
+  <div id="quiz-container"></div>
+  <div id="result"></div>
+  <audio id="correct-sound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3"></audio>
+  <audio id="incorrect-sound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
+  <script>
+    const questions = [
+      {
+        question: "Which ancient civilization is known for its pyramids and pharaohs?",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+        choices: ["Aztec", "Egyptian", "Roman", "Greek"],
+        answer: "Egyptian"
+      },
+      {
+        question: "In which river valley did the ancient Sumerian civilization emerge?",
+        image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Mesopotamia_ancient.svg",
+        choices: ["Nile Valley", "Indus Valley", "Yellow River Valley", "Tigris-Euphrates Valley"],
+        answer: "Tigris-Euphrates Valley"
+      },
+      // You can add more questions with image: "image_url_here"
+    ];
+
+    let currentQuestion = 0;
+    const userAnswers = [];
+    const quizContainer = document.getElementById('quiz-container');
+    const resultDiv = document.getElementById('result');
+    const timeDisplay = document.getElementById('time');
+    let timeLeft = 300;
+    let timer = setInterval(() => {
+      timeLeft--;
+      timeDisplay.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        showResults();
+      }
+    }, 1000);
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      const choicesHtml = q.choices.map(choice => `
+        <label>
+          <input type="radio" name="choice" value="${choice}"> ${choice}
+        </label>
+      `).join('');
+      const html = `
+        <div class="question-box">
+          <h3>Question ${currentQuestion + 1} of ${questions.length}</h3>
+          <p>${q.question}</p>
+          ${q.image ? `<img src="${q.image}" alt="Question image" class="question-image">` : ''}
+          <div class="choices">${choicesHtml}</div>
+          <button onclick="submitAnswer()">Submit</button>
+        </div>
+      `;
+      quizContainer.innerHTML = html;
+    }
+
+    function submitAnswer() {
+      const selected = document.querySelector('input[name="choice"]:checked');
+      if (!selected) {
+        alert("Please select an answer.");
+        return;
+      }
+      userAnswers.push(selected.value);
+
+      const isCorrect = selected.value === questions[currentQuestion].answer;
+      document.getElementById(isCorrect ? 'correct-sound' : 'incorrect-sound').play();
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        clearInterval(timer);
+        showResults();
+      }
+    }
+
+    function showResults() {
+      let correctCount = 0;
+      let resultHtml = "<h2>Quiz Results</h2>";
+
+      questions.forEach((q, i) => {
+        const userAnswer = userAnswers[i];
+        const isCorrect = userAnswer === q.answer;
+        if (isCorrect) correctCount++;
+
+        resultHtml += `
+          <div class="question-box">
+            <p><strong>Q${i + 1}:</strong> ${q.question}</p>
+            ${q.image ? `<img src="${q.image}" class="question-image">` : ''}
+            <p>Your answer: <strong class="${isCorrect ? 'correct' : 'incorrect'}">${userAnswer || "No Answer"}</strong></p>
+            ${!isCorrect ? `<p>Correct answer: <strong class="correct">${q.answer}</strong></p>` : ''}
+          </div>
+        `;
+      });
+
+      resultHtml += `<h3>You got ${correctCount} out of ${questions.length} correct.</h3>`;
+      quizContainer.innerHTML = '';
+      resultDiv.innerHTML = resultHtml;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
