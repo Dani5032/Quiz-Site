@@ -43,7 +43,28 @@ const answers = [
     "Two",
     "Corsica"
 ];
-
+const images = [
+    "assets/pharaoh-pyramids.jpg",
+    "assets/Tigris-Euphrates Valley.jpg",
+    "assets/Hieroglyphics.jpg",
+    "assets/The German invasion of Poland.jpg",
+    "assets/ussr.png",
+    "assets/thomasjefferson.jpg",
+    "assets/13.png",
+    "assets/apollo.jpg",
+    "assets/georgewashington.jpg",
+    "assets/Delaware.jpg",
+    "assets/spain.jpg",
+    "assets/treatyofparis.jpg",
+    "assets/kenya.png",
+    "assets/congo.png",
+    "assets/brentonwoods.jpg",
+    "assets/euro.jpg",
+    "assets/zaibatsu.jpg",
+    "assets/mickeymouse.jpg",
+    "assets/anne.jpg",
+    "assets/corsica.jpg"
+]
 const allAnswers = [
     ["Aztec", "Roman", "Egyptian", "Greek"],
     ["Nile Valley", "Indus Valley", "Yellow River Valley", "Tigris-Euphrates Valley"],
@@ -68,6 +89,7 @@ const allAnswers = [
 ];
 
 
+
 // Setting up variables
 let Num = 0;
 let next = 0;
@@ -81,7 +103,8 @@ const radioAnswers = document.getElementsByName("answer");
 const quizData = questions.map((q, i) => ({
     question: q,
     correctAnswer: answers[i],
-    choices: allAnswers[i]
+    choices: allAnswers[i],
+    image: images[i]
 }));
 
 //shuffle the questions around
@@ -137,6 +160,8 @@ function loadQuestion() {
     Num++;
     questionsSection.innerText = Num+". " + quizData[next].question;
     const choices = quizData[next].choices;
+    const imageTag = document.getElementById("replaceImage");
+    imageTag.src = quizData[next].image;
 
     for (let i = 0; i < radioAnswers.length; i++) {
         radioAnswers[i].value = choices[i];

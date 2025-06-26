@@ -7,13 +7,21 @@ body{
     margin-right: auto;
     background-color: rgb(7, 133, 133);
     width: 30%;
-    height: 450px;
+    height: 600px;
     margin-top: 150px;
     margin-bottom: 100px;
     border-radius: 15px;
     padding: 10px 25px;
 }
-
+img{
+    border-radius: 4px;
+    padding-top: 15px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 150px;
+}
 .quiz h2{
     text-align: center;
     color: white;
