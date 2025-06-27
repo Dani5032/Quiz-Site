@@ -6,21 +6,21 @@ body{
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(7, 133, 133);
-    width: 30%;
-    height: 600px;
+    width: 60%;
+    height: 725px;
     margin-top: 150px;
     margin-bottom: 100px;
     border-radius: 15px;
-    padding: 10px 25px;
+    padding: 15px 30px;
 }
 img{
-    border-radius: 4px;
-    padding-top: 15px;
+    border-radius: 6px;
+    padding-top: 20px;
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 .quiz h2{
     text-align: center;
@@ -36,8 +36,8 @@ img{
 
 .quiz ul li{
  list-style-type: none;
- margin-bottom: 10px;
- font-size: 12pt;
+ margin-bottom: 14px;
+ font-size: 14pt;
  color: white;
  font-family: 'Times New Roman', Times, serif;
 }
